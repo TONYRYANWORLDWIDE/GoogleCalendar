@@ -1,0 +1,7 @@
+**.pyc
+env/Lib/site-packages/*
+credentials.json
+**.exe
+env/*
+token.pickle
+.ipynb_checkpoints/*
