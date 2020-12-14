@@ -4,4 +4,4 @@ credentials.json
 **.exe
 env/*
 token.pickle
-.ipynb_checkpoints/*
+
