@@ -4,4 +4,6 @@ credentials.json
 **.exe
 env/*
 token.pickle
+GoogleCalendar.ipynb
+.ipynb_checkpoints/*
 
