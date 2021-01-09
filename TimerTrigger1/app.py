@@ -21,7 +21,7 @@ class googleCalendar():
     
     def __init__(self):
         home = str(Path.home())
-        self.credentials_file = os.path.join(home,'Desktop' ,'GoogleCalendar' ,'credentials.json')
+        self.credentials_file = 'credentials.json'
         self.server = ''
         self.user = ''
         self.password = ''
@@ -117,7 +117,7 @@ class googleCalendar():
     def mergeIntoOneOffBills(self):
         credentials = self.getCredentials()
         engine = create_engine("mssql+pyodbc:///?odbc_connect={}".format(self.params))
-        command = 'Exec mergeGoogleCalendar_OneOffBills'
+        command = 'Exec dbo.mergeGoogleCalendar_OneOffBills'
         cxn = engine.raw_connection()
         cur = cxn.cursor()
         cur.execute(command)

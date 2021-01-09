@@ -97,13 +97,20 @@ class googleCalendar():
     
     def updateGoogleCalendar(self):
         photojson = self.getPhotoEvents()
-        credentials = self.getCredentials()
-        server = credentials.server
-        database = credentials.database
-        username = credentials.user
-        password = credentials.password        
+        credentials = self.getCredentials()       
         engine = create_engine("mssql+pyodbc:///?odbc_connect={}".format(self.params))
         command = 'Exec cmp.mergeGoogleCalendar @json =' + "'" + photojson + "'"
+        cxn = engine.raw_connection()
+        cur = cxn.cursor()
+        cur.execute(command)
+        cur.close()
+        cxn.commit()
+
+        
+    def mergeIntoOneOffBills(self):
+        credentials = self.getCredentials()
+        engine = create_engine("mssql+pyodbc:///?odbc_connect={}".format(self.params))
+        command = 'Exec dbo.mergeGoogleCalendar_OneOffBills'
         cxn = engine.raw_connection()
         cur = cxn.cursor()
         cur.execute(command)
